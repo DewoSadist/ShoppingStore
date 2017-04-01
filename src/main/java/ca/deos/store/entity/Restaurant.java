@@ -1,5 +1,7 @@
 package ca.deos.store.entity;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -63,8 +65,32 @@ public class Restaurant {
     @Column(name = "ratings")
     private int ratings;
 
-    @OneToMany(mappedBy = "restaurant", fetch = FetchType.LAZY)
-    private List<Category> categories;
+//    @OneToMany(mappedBy = "restaurant", fetch = FetchType.LAZY)
+//    private List<Category> categories;
+
+    @Override
+    public String toString() {
+        return "Restaurant{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", slug='" + slug + '\'' +
+                ", tags='" + tags + '\'' +
+                ", description='" + description + '\'' +
+                ", logo_image_url='" + logo_image_url + '\'' +
+                ", header_image_url='" + header_image_url + '\'' +
+                ", cover_image_url='" + cover_image_url + '\'' +
+                ", status='" + status + '\'' +
+                ", country='" + country + '\'' +
+                ", city='" + city + '\'' +
+                ", address='" + address + '\'' +
+                ", location='" + location + '\'' +
+                ", fax='" + fax + '\'' +
+                ", phone='" + phone + '\'' +
+                ", postal_code='" + postal_code + '\'' +
+                ", open_id=" + open_id +
+                ", ratings=" + ratings +
+                '}';
+    }
 
     @OneToMany(mappedBy = "restaurant", fetch = FetchType.LAZY)
     private List<Hour> hours;
@@ -78,13 +104,13 @@ public class Restaurant {
         this.hours = (List<Hour>)hours;
     }
 
-    public List<Category> getCategories() {
-        return this.categories;
-    }
+//    public List<Category> getCategories() {
+//        return this.categories;
+//    }
 
-    public void setCategories(List<Category> categories) {
-        this.categories = (List<Category>) categories;
-    }
+//    public void setCategories(List<Category> categories) {
+//        this.categories = (List<Category>) categories;
+//    }
 
     public Integer getId() {
         return id;
@@ -230,23 +256,4 @@ public class Restaurant {
         this.ratings = ratings;
     }
 
-    @Override
-    public String toString() {
-        return "Restaurant{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", slug='" + slug + '\'' +
-                ", tags='" + tags + '\'' +
-                ", description='" + description + '\'' +
-                ", logo_image_url='" + logo_image_url + '\'' +
-                ", header_image_url='" + header_image_url + '\'' +
-                ", cover_image_url='" + cover_image_url + '\'' +
-                ", status='" + status + '\'' +
-                ", address='" + address + '\'' +
-                ", location='" + location + '\'' +
-                ", fax='" + fax + '\'' +
-                ", phone='" + phone + '\'' +
-                ", ratings=" + ratings +
-                '}';
-    }
 }

@@ -30,6 +30,13 @@ public class HourController {
         return hourService.getHours();
     }
 
+//    @ResponseBody
+//    @RequestMapping(value = "/restaurants/{resId}/hours", method = RequestMethod.GET)
+//    public List<Hour> getRestHours(@PathVariable int resId) throws IOException, UnirestException {
+//
+//        return hourService.getRestaurantHours(resId);
+//    }
+
     @ResponseBody
     @RequestMapping(value = "/restaurants/hours", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public Hour saveHour(@RequestBody Hour hour) throws IOException, UnirestException {

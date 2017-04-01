@@ -13,21 +13,31 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService {
 
     @Autowired
-    ProductDao Product;
+    ProductDao productDao;
 
     @Override
     public List<Product> getProducts() {
-        return Product.getProducts();
+        return productDao.getProducts();
+    }
+
+    @Override
+    public  Product getProductById(int prodId){
+        return productDao.getProductById(prodId);
+    }
+
+    @Override
+    public List<Product> getProductsByCatID(int catId) {
+        return productDao.getProductsByCatID(catId);
     }
 
     @Override
     public Product saveOrUpdateProduct(Product product) {
-        Product.saveOrUpdateProduct(product);
+        productDao.saveOrUpdateProduct(product);
         return product;
     }
 
     @Override
-    public void deleteProduct(int prodId) { Product.deleteProduct(prodId);
+    public void deleteProduct(int prodId) { productDao.deleteProduct(prodId);
 
     }
 }

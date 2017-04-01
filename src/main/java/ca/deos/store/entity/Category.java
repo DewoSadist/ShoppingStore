@@ -14,20 +14,22 @@ public class Category {
     @Column(name = "name")
     String name;
 
-    @ManyToOne
-    @JoinColumn(name = "res_id")
-    Restaurant restaurant;
+    @Column(name = "res_id")
+    int res_id;
+//    @ManyToOne
+//    @JoinColumn(name = "res_id")
+//    Restaurant restaurant;
+////
+//    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
+//    private List<Product> products;
+//
+//    public List<Product> getProducts() {
+//        return products;
+//    }
 
-    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
-    private List<Product> products;
-
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
+//    public void setProducts(List<Product> products) {
+//        this.products = products;
+//    }
 
     public int getId() {
         return id;
@@ -41,6 +43,14 @@ public class Category {
         return name;
     }
 
+    public int getRes_id() {
+        return res_id;
+    }
+
+    public void setRes_id(int res_id) {
+        this.res_id = res_id;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -50,6 +60,7 @@ public class Category {
         return "Category{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", res_id=" + res_id +
                 '}';
     }
 }

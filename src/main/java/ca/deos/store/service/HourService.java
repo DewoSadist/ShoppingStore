@@ -10,6 +10,8 @@ public interface HourService {
 
     public List<Hour> getHours();
 
+    public List<Hour> getRestaurantHours(int resId);
+
     public Hour saveOrUpdateHour(Hour hour) throws UnirestException;
 
     public void deleteHour(int openId);

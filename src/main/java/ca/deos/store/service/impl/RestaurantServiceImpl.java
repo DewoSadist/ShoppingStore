@@ -18,6 +18,11 @@ public class RestaurantServiceImpl implements RestaurantService {
     public List<Restaurant> getRestaurants() {
         return restaurantDao.getRestaurants();
     }
+    @Override
+    public Restaurant getRestaurantById(int resId){
+        Restaurant restaurant = restaurantDao.getRestaurantById(resId);
+        return restaurant;
+    }
 
     @Override
     public Restaurant saveOrUpdateRestaurant(Restaurant restaurant) {

@@ -10,6 +10,8 @@ public interface RestaurantService {
 
     public List<Restaurant> getRestaurants();
 
+    public Restaurant getRestaurantById(int resId);
+
     public Restaurant saveOrUpdateRestaurant(Restaurant restaurant) throws UnirestException;
 
     public void deleteRestaurant(int resId);

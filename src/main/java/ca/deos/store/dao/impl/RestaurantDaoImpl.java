@@ -4,6 +4,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import ca.deos.store.dao.RestaurantDao;
 import ca.deos.store.entity.Restaurant;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -22,6 +23,14 @@ public class RestaurantDaoImpl implements RestaurantDao {
         Session session = em.unwrap(Session.class);
 
         return session.createCriteria(Restaurant.class).list();
+    }
+
+    @Override
+    @Transactional
+    public Restaurant getRestaurantById(int resId){
+        Session session = em.unwrap(Session.class);
+
+        return (Restaurant) session.get(Restaurant.class, resId);
     }
 
     @Override

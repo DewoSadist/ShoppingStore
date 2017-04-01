@@ -31,7 +31,14 @@ public class RestaurantController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/restaurants", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/restaurants/{resId}", method = RequestMethod.POST)
+    public Restaurant getRestaurant(@PathVariable int resId) throws IOException, UnirestException {
+
+        return restaurantService.getRestaurantById(resId);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/restaurants", method = RequestMethod.POST)
     public Restaurant saveRestaurant(@RequestBody Restaurant restaurant) throws IOException, UnirestException {
 
         return restaurantService.saveOrUpdateRestaurant(restaurant);

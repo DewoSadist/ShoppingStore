@@ -10,6 +10,10 @@ public interface ProductService {
 
     public List<Product> getProducts();
 
+    public  Product getProductById(int prodId);
+
+    public List<Product> getProductsByCatID(int catId);
+
     public Product saveOrUpdateProduct(Product product) throws UnirestException;
 
     public void deleteProduct(int prodId);

@@ -5,7 +5,7 @@ import java.sql.Time;
 
 @Entity
 @Table(name="open_hour")
-public class Hour {
+public class  Hour {
     @Id
     @Column(name = "open_id")
     @GeneratedValue(strategy = GenerationType.AUTO)

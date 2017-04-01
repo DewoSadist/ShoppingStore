@@ -36,12 +36,20 @@ public class Product {
     @Column(name = "type_id")
     int type_id;
 
-//    @Column(name = "cat_id")
-//    int cat_id;
+    @Column(name = "cat_id")
+    int cat_id;
 
-    @ManyToOne
-    @JoinColumn(name = "cat_id")
-    Category category;
+    public int getCat_id() {
+        return cat_id;
+    }
+
+    public void setCat_id(int cat_id) {
+        this.cat_id = cat_id;
+    }
+
+//    @ManyToOne
+//    @JoinColumn(name = "cat_id")
+//    Category category;
 
     public int getId() {
         return id;
@@ -137,7 +145,6 @@ public class Product {
                 ", cus_id=" + cus_id +
                 ", sup_id=" + sup_id +
                 ", type_id=" + type_id +
-                ", category=" + category +
                 '}';
     }
 }

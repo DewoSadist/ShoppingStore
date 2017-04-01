@@ -29,6 +29,19 @@ public class ProductController {
 
         return productService.getProducts();
     }
+    @ResponseBody
+    @RequestMapping(value = "/products/{prodId}", method = RequestMethod.POST)
+    public  Product getProduct(@PathVariable int prodId) throws IOException, UnirestException {
+
+        return productService.getProductById(prodId);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/categories/{catId}/products", method = RequestMethod.POST)
+    public  List<Product> getCategoriesProducts(@PathVariable int catId) throws IOException, UnirestException {
+
+        return productService.getProductsByCatID(catId);
+    }
 
     @ResponseBody
     @RequestMapping(value = "/products", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -39,9 +52,9 @@ public class ProductController {
 
     @ResponseBody
     @RequestMapping(value = "/products/{prodId}", method = RequestMethod.DELETE)
-    public void deleteProduct(@PathVariable int resId) throws IOException, UnirestException {
+    public void deleteProduct(@PathVariable int prodId) throws IOException, UnirestException {
 
-        productService.deleteProduct(resId);
+        productService.deleteProduct(prodId);
 
     }
 }

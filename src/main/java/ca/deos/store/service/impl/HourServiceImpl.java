@@ -22,6 +22,11 @@ public class HourServiceImpl implements HourService {
     }
 
     @Override
+    public List<Hour> getRestaurantHours( int resId){
+        return hourDao.getRestaurantHours(resId);
+    }
+
+    @Override
     public Hour saveOrUpdateHour(Hour hour) throws UnirestException {
         hourDao.saveOrUpdateHour(hour);
         return hour;

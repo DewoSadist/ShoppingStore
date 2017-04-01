@@ -22,6 +22,11 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    public List<Category> getCategoriesByResId(int resId){
+        return categoryDao.getCategoriesByResId(resId);
+    }
+
+    @Override
     public Category saveOrUpdateCategory(Category category) throws UnirestException {
         categoryDao.saveOrUpdateCategory(category);
         return category;

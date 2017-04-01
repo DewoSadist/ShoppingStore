@@ -10,6 +10,8 @@ public interface CategoryService {
 
     public List<Category> getCategories();
 
+    public List<Category> getCategoriesByResId(int resId);
+
     public Category saveOrUpdateCategory(Category category) throws UnirestException;
 
     public void deleteCategory(int catId);

@@ -31,6 +31,13 @@ public class CategoryController {
     }
 
     @ResponseBody
+    @RequestMapping(value = "/restaurants/{resId}/categories", method = RequestMethod.POST)
+    public List<Category> getAllRestaurantCategories(@PathVariable int resId) throws IOException, UnirestException {
+
+        return categoryService.getCategoriesByResId(resId);
+    }
+
+    @ResponseBody
     @RequestMapping(value = "/restaurants/categories", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public Category saveCategory(@RequestBody Category category) throws IOException, UnirestException {
 

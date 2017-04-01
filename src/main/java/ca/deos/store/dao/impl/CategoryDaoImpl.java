@@ -3,6 +3,7 @@ package ca.deos.store.dao.impl;
 import ca.deos.store.dao.CategoryDao;
 import ca.deos.store.entity.Category;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +23,14 @@ public class CategoryDaoImpl implements CategoryDao {
         Session session = em.unwrap(Session.class);
 
         return session.createCriteria(Category.class).list();
+    }
+    @Override
+    @Transactional
+    public List<Category> getCategoriesByResId(int resId){
+        Session session = em.unwrap(Session.class);
+
+        return session.createCriteria(Category.class).
+        add(Restrictions.eq("res_id", resId)).list();
     }
 
     @Override
