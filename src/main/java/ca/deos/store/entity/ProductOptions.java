@@ -1,6 +1,7 @@
 package ca.deos.store.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "product_options")
@@ -24,6 +25,17 @@ public class ProductOptions {
 
     @Column(name = "prod_id")
     int prod_id;
+
+    @OneToMany(mappedBy = "productOptions", fetch = FetchType.LAZY)
+    private List<ProductOptionsItem> productOptionsItems;
+
+    public List<ProductOptionsItem> getProductOptionsItems() {
+        return productOptionsItems;
+    }
+
+    public void setProductOptionsItems(List<ProductOptionsItem> productOptionsItems) {
+        this.productOptionsItems = productOptionsItems;
+    }
 
     public int getId() {
         return id;

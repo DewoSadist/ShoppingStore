@@ -16,8 +16,9 @@ public class ProductOptionsItem {
     @Column(name = "price")
     double price;
 
-    @Column(name = "opt_id")
-    int opt_id;
+    @ManyToOne
+    @JoinColumn(name = "opt_id")
+    ProductOptions productOptions;
 
     public int getId() {
         return id;
@@ -43,13 +44,6 @@ public class ProductOptionsItem {
         this.price = price;
     }
 
-    public int getOpt_id() {
-        return opt_id;
-    }
-
-    public void setOpt_id(int opt_id) {
-        this.opt_id = opt_id;
-    }
 
     @Override
     public String toString() {
@@ -57,7 +51,6 @@ public class ProductOptionsItem {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", price=" + price +
-                ", opt_id=" + opt_id +
                 '}';
     }
 }
