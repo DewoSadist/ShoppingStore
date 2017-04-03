@@ -38,6 +38,13 @@ public class ProductOptionsController {
     }
 
     @ResponseBody
+    @RequestMapping(value = "products/{prodId}/options", method = RequestMethod.POST)
+    public List<ProductOptions> getProductOptionsList(@PathVariable int prodId) throws IOException, UnirestException {
+
+        return productOptionsService.getProductOptionsListById(prodId);
+    }
+
+    @ResponseBody
     @RequestMapping(value = "/options", method = RequestMethod.POST)
     public ProductOptions saveProductOptions(@RequestBody ProductOptions productOptions) throws IOException, UnirestException {
 

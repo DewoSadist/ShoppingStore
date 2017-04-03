@@ -3,6 +3,7 @@ package ca.deos.store.dao.impl;
 import ca.deos.store.dao.ProductOptionsDao;
 import ca.deos.store.entity.ProductOptions;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,6 +30,14 @@ public class ProductOptionsDaoImpl implements ProductOptionsDao {
     public ProductOptions getProductOptionsById(int optId) {
         Session session = em.unwrap(Session.class);
         return (ProductOptions) session.get(ProductOptions.class, optId);
+    }
+
+    @Override
+    @Transactional
+    public List<ProductOptions> getProductOptionsListById(int prodId) {
+        Session session = em.unwrap(Session.class);
+
+        return session.createCriteria(ProductOptions.class).add(Restrictions.eq("prod_id", prodId)).list();
     }
 
     @Override

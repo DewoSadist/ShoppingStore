@@ -12,6 +12,8 @@ public interface ProductOptionsService {
 
     public ProductOptions getProductOptionsById(int optId);
 
+    public List<ProductOptions> getProductOptionsListById(int prodId);
+
     public ProductOptions saveOrUpdateProductOptions(ProductOptions productOptions) throws UnirestException;
 
     public void deleteProductOptions(int optId);

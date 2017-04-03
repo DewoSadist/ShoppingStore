@@ -10,6 +10,8 @@ public interface ProductOptionsDao {
 
     public ProductOptions getProductOptionsById(int optId);
 
+    public List<ProductOptions> getProductOptionsListById(int prodId);
+
     public void saveOrUpdateProductOptions(ProductOptions productOptions);
 
     public void deleteProductOptions(int optId);
