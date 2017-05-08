@@ -7,10 +7,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/api/users")
@@ -22,8 +22,20 @@ public class UserController {
     UserService userService;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public User getUserLogin(@RequestBody User user) throws IOException, UnirestException {
+    public Map<String, Object> getUserLogin(@RequestBody User user) throws IOException, UnirestException {
+
         return userService.login(user);
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public User saveUser(@RequestBody User user) throws IOException, UnirestException {
+
+        return userService.saveOrUpdateUser(user);
+    }
+
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public User createUser(@RequestBody User user) throws IOException,UnirestException {
+        return userService.createUser(user);
     }
 
 

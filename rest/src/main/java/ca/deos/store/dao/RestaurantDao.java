@@ -13,4 +13,6 @@ public interface RestaurantDao {
     public void saveOrUpdateRestaurant(Restaurant restaurant);
 
     public void deleteRestaurant(int resId);
+
+    public List<Restaurant> getRestaurantByUserId(String userId);
 }

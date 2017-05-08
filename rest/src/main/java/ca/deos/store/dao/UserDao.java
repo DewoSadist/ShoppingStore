@@ -12,4 +12,8 @@ public interface UserDao {
     User getUser(String userId) throws UnirestException,IOException;
 
     void deleteUser(String userId) throws  UnirestException,IOException;
+
+    void saveOrUpdateUser(User user) throws UnirestException, IOException;
+
+    void createUser(User user) throws UnirestException, IOException;
 }

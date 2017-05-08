@@ -63,6 +63,9 @@ public class Restaurant {
     @Column(name = "ratings")
     private int ratings;
 
+    @Column(name = "user_id")
+    private String user_id;
+
 //    @OneToMany(mappedBy = "restaurant", fetch = FetchType.LAZY)
 //    private List<Category> categories;
 
@@ -254,4 +257,11 @@ public class Restaurant {
         this.ratings = ratings;
     }
 
+    public String getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
+    }
 }

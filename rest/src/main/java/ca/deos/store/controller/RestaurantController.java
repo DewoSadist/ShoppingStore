@@ -50,4 +50,10 @@ public class RestaurantController {
         restaurantService.deleteRestaurant(resId);
 
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/users/{userId}/restaurants", method = RequestMethod.GET)
+    public List<Restaurant> getRestaurantByUserId(@PathVariable String userId) throws Exception, UnirestException {
+        return restaurantService.getRestaurantByUserId(userId);
+    }
 }

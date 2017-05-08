@@ -47,4 +47,20 @@ public class UserDaoImpl implements UserDao {
         session.delete(user);
 
     }
+
+    @Override
+    @Transactional
+    public void saveOrUpdateUser(User user) throws UnirestException, IOException {
+        Session session = em.unwrap(Session.class);
+
+        session.saveOrUpdate(user);
+    }
+
+    @Override
+    @Transactional
+    public void createUser(User user) throws UnirestException, IOException {
+        Session session = em.unwrap(Session.class);
+
+        session.save(user);
+    }
 }

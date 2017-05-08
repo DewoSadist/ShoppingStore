@@ -1,5 +1,7 @@
 package ca.deos.store.entity;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 
 @Entity
@@ -37,7 +39,7 @@ public class User {
     @Column(name = "location")
     private String location;
 
-    @Column(name = "role")
+    @Column(name = "roles")
     private String roles;
 
     @Column(name = "firstname")
@@ -48,6 +50,9 @@ public class User {
 
     @Column(name = "lastname")
     private String lastname;
+
+    @Column(name = "user_id", nullable = false, unique = true)
+    private String user_id;
 
     public String getUsername() {
         return username;
@@ -159,6 +164,14 @@ public class User {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+    public String getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
     }
 
     @Override

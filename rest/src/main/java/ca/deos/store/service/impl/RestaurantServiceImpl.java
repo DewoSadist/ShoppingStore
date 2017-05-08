@@ -4,8 +4,11 @@ package ca.deos.store.service.impl;
 import ca.deos.store.dao.RestaurantDao;
 import ca.deos.store.entity.Restaurant;
 import ca.deos.store.service.RestaurantService;
+import com.mashape.unirest.http.exceptions.UnirestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -33,5 +36,9 @@ public class RestaurantServiceImpl implements RestaurantService {
     @Override
     public void deleteRestaurant(int resId) { restaurantDao.deleteRestaurant(resId);
 
+    }
+    /* Profile */
+    public List<Restaurant> getRestaurantByUserId(String userId) throws IOException,UnirestException{
+        return restaurantDao.getRestaurantByUserId(userId);
     }
 }

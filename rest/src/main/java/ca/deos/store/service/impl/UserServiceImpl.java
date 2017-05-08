@@ -3,20 +3,19 @@ package ca.deos.store.service.impl;
 import ca.deos.store.dao.UserDao;
 import ca.deos.store.entity.User;
 import ca.deos.store.service.UserService;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
-public class UserServiceImpl implements UserService, UserDetailsService {
+public class UserServiceImpl implements UserService {
 
     @Autowired
     UserDao userDao;
@@ -28,10 +27,12 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public User login(User user) throws UnirestException, IOException {
-        String login = user.getUsername();
-        String pass = user.getPassword();
-        User dbUser = userDao.getUserByLogin(login);
+    public Map<String, Object> login(User user) throws UnirestException, IOException {
+
+        String login  = user.getUsername();
+        String pass   = user.getPassword();
+        User   dbUser = userDao.getUserByLogin(login);
+
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
         if(dbUser != null){
@@ -39,12 +40,21 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                 dbUser.setPassword(null);
                 user = dbUser;
             } else {
-                throw new UsernameNotFoundException("Invalid username or password.");
+                throw new IllegalArgumentException("One of input parameters is empty");
+//                throw new UsernameNotFoundException("Invalid username or password.");
             }
         } else {
-            throw new UsernameNotFoundException("Invalid username or password.");
+//            throw new UsernameNotFoundException("Invalid username or password.");
+            throw new IllegalArgumentException("One of input parameters is empty");
         }
-        return user;
+
+
+        // Add user data
+        Map<String, Object> map = new HashMap<>();
+        // @TODO We must not show sessionId param to front end
+        map.put("user", user);
+
+        return map;
     }
 
     @Override
@@ -58,7 +68,14 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String user) throws UsernameNotFoundException {
-        return null;
+    public User saveOrUpdateUser(User user) throws  UnirestException, IOException {
+        userDao.saveOrUpdateUser(user);
+        return  user;
+    }
+
+    @Override
+    public User createUser(User user) throws  UnirestException, IOException {
+        userDao.createUser(user);
+        return user;
     }
 }
