@@ -1,6 +1,7 @@
 package ca.deos.store.config;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
@@ -16,6 +17,7 @@ public class ResourceOAuthSecurityConfig extends ResourceServerConfigurerAdapter
     public void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeRequests()
                 .antMatchers("/").permitAll()
-                .antMatchers("/api/**").authenticated();
+                .antMatchers(HttpMethod.OPTIONS, "/oauth/token").permitAll();
+//                .antMatchers("/api/**").authenticated();
     }
 }

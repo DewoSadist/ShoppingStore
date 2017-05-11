@@ -38,5 +38,12 @@ public class UserController {
         return userService.createUser(user);
     }
 
+    @RequestMapping(value = "/{userId}", method = RequestMethod.GET)
+    public User getUser(@PathVariable String userId)throws IOException, UnirestException{
+        User user = userService.getUser(userId);
+        user.setPassword(null);
+        return user;
+    }
+
 
 }
