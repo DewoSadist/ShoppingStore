@@ -134,6 +134,17 @@
 -- INDEX o (customer_id),
 --   CONSTRAINT o FOREIGN KEY (customer_id) REFERENCES customer (customer_id)
 -- );
+-- CREATE TABLE  order_details (
+--   id INTEGER NOT NULL AUTO_INCREMENT,
+--   title VARCHAR(40),
+--   unit_price DOUBLE,
+--   quantity INTEGER,
+--   description TEXT,
+--   prod_id INTEGER,
+--   PRIMARY KEY (order_id),
+--   INDEX ord_det (order_id),
+--   CONSTRAINT ord_det FOREIGN KEY (order_id) REFERENCES orders (order_id)
+-- );
 --
 --
 -- # /////////////////
@@ -183,3 +194,17 @@ SELECT * FROM restaurant;
 -- );
 -- INSERT INTO users (username, password, enabled, email, phone, postal_code, country, city, address, location, role)
 -- VALUES ('kazakh_stan@mail.ru', '123456',TRUE ,'kazakh_stan@mail.ru','87021028022', '050028', 'Kazakhstan','Almaty','Belova 8','43.359771, 76.966530','ADMIN');
+
+-- DROP TABLE order_details;
+-- CREATE TABLE  order_details (
+--   id INTEGER NOT NULL AUTO_INCREMENT,
+--   title VARCHAR(40),
+--   unit_price DOUBLE,
+--   quantity INTEGER,
+--   description TEXT,
+--   prod_id INTEGER,
+--   order_id INTEGER NOT NULL ,
+--   PRIMARY KEY (id),
+--   INDEX ord_det (order_id),
+--   CONSTRAINT ord_det FOREIGN KEY (order_id) REFERENCES orders (order_id)
+-- );

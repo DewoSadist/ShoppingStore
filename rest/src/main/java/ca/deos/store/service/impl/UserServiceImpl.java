@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -77,5 +78,10 @@ public class UserServiceImpl implements UserService {
     public User createUser(User user) throws  UnirestException, IOException {
         userDao.createUser(user);
         return user;
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        return userDao.getAllUsers();
     }
 }

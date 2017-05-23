@@ -1,11 +1,15 @@
 package ca.deos.store.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Time;
 
 @Entity
 @Table(name="open_hour")
-public class  Hour {
+public class  Hour implements Serializable {
+
+
     @Id
     @Column(name = "open_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -15,13 +19,14 @@ public class  Hour {
     String day;
 
     @Column(name = "open_hour")
+    @JsonFormat(pattern = "HH:MM:SS")
     Time open_hour;
 
     @Column(name = "close_hour")
+    @JsonFormat(pattern = "HH:MM:SS")
     Time close_hour;
 
     @ManyToOne
-    @JoinColumn(name = "res_id")
     Restaurant restaurant;
 
     public int getOpen_id() {
@@ -54,6 +59,10 @@ public class  Hour {
 
     public void setClose_hour(Time close_hour) {
         this.close_hour = close_hour;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 
     @Override

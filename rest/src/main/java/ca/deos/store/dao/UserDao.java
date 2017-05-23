@@ -4,6 +4,7 @@ import ca.deos.store.entity.User;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
 import java.io.IOException;
+import java.util.List;
 
 public interface UserDao {
 
@@ -16,4 +17,6 @@ public interface UserDao {
     void saveOrUpdateUser(User user) throws UnirestException, IOException;
 
     void createUser(User user) throws UnirestException, IOException;
+
+    List<User> getAllUsers();
 }

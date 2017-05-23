@@ -10,6 +10,7 @@ import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -39,10 +40,17 @@ public class UserController {
     }
 
     @RequestMapping(value = "/{userId}", method = RequestMethod.GET)
-    public User getUser(@PathVariable String userId)throws IOException, UnirestException{
+    public User getUser(@PathVariable String userId)throws IOException, UnirestException {
         User user = userService.getUser(userId);
         user.setPassword(null);
         return user;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public List<User> getAllUsers() throws IOException, UnirestException {
+
+        return userService.getAllUsers();
     }
 
 

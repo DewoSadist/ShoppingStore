@@ -1,11 +1,17 @@
 package ca.deos.store.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name = "restaurant")
-public class Restaurant {
+public class Restaurant implements Serializable{
+
+    public Restaurant(){
+
+    }
+
 
     @Id
     @Column(name = "res_id")
@@ -69,6 +75,7 @@ public class Restaurant {
 //    @OneToMany(mappedBy = "restaurant", fetch = FetchType.LAZY)
 //    private List<Category> categories;
 
+
     @Override
     public String toString() {
         return "Restaurant{" +
@@ -93,16 +100,17 @@ public class Restaurant {
                 '}';
     }
 
-    @OneToMany(mappedBy = "restaurant", fetch = FetchType.LAZY)
+//    @OneToMany(cascade = { CascadeType.ALL }, orphanRemoval = true, mappedBy = "restaurant")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "restaurant_res_id")
     private List<Hour> hours;
-
 
     public List<Hour> getHours() {
         return hours;
     }
 
     public void setHours(List<Hour> hours) {
-        this.hours = (List<Hour>)hours;
+        this.hours = hours;
     }
 
 //    public List<Category> getCategories() {

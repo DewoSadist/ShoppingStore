@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 public interface UserService {
@@ -20,5 +21,7 @@ public interface UserService {
     User saveOrUpdateUser(User user) throws  UnirestException, IOException;
 
     User createUser(User user) throws  UnirestException, IOException;
+
+    List<User> getAllUsers();
 
 }

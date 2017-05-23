@@ -2,6 +2,7 @@ package ca.deos.store.dao.impl;
 
 import ca.deos.store.dao.UserDao;
 import ca.deos.store.entity.Hour;
+import ca.deos.store.entity.Restaurant;
 import ca.deos.store.entity.User;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import org.hibernate.Session;
@@ -13,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.management.Query;
 import javax.persistence.EntityManager;
 import java.io.IOException;
+import java.util.List;
 
 @Repository
 public class UserDaoImpl implements UserDao {
@@ -62,5 +64,13 @@ public class UserDaoImpl implements UserDao {
         Session session = em.unwrap(Session.class);
 
         session.save(user);
+    }
+
+    @Override
+    @Transactional
+    public List<User> getAllUsers() {
+        Session session = em.unwrap(Session.class);
+
+        return session.createCriteria(User.class).list();
     }
 }
