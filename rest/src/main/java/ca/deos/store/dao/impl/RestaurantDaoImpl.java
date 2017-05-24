@@ -1,8 +1,6 @@
 package ca.deos.store.dao.impl;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import javax.persistence.EntityManager;
 import ca.deos.store.dao.RestaurantDao;
 import ca.deos.store.entity.Hour;
@@ -10,8 +8,6 @@ import ca.deos.store.entity.Restaurant;
 import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
