@@ -35,6 +35,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public List<Order> getRestaurantOrders(int resId) {
+        return orderDao.gesRestaurantOrders(resId);
+    }
+
+    @Override
     public Order saveOrUpdateOrder(Order order) throws UnirestException {
         orderDao.saveOrUpdateOrder(order);
         return order;

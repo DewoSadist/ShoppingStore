@@ -24,14 +24,14 @@ public class OrderController {
 
     @ResponseBody
     @RequestMapping(value = "/orders", method = RequestMethod.GET)
-    public List<Order> getAllRestaurants() throws IOException, UnirestException {
+    public List<Order> getAllOrders() throws IOException, UnirestException {
 
         return orderService.getOrders();
     }
 
     @ResponseBody
-    @RequestMapping(value = "/orders/{orderId}", method = RequestMethod.POST)
-    public Order gerOrder(@PathVariable int orderId) throws IOException, UnirestException {
+    @RequestMapping(value = "/orders/{orderId}", method = RequestMethod.GET)
+    public Order getOrder(@PathVariable int orderId) throws IOException, UnirestException {
 
         return orderService.getOrder(orderId);
     }
@@ -53,7 +53,13 @@ public class OrderController {
 
     @ResponseBody
     @RequestMapping(value = "/users/{userId}/orders", method = RequestMethod.GET)
-    public List<Order> getRestaurantByUserId(@PathVariable String userId) throws Exception, UnirestException {
+    public List<Order> getOrdersByUserId(@PathVariable String userId) throws Exception, UnirestException {
         return orderService.getUserOrders(userId);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/restaurants/{resId}/orders", method = RequestMethod.GET)
+    public List<Order> getOrdersByResId(@PathVariable int resId) throws Exception, UnirestException {
+        return  orderService.getRestaurantOrders(resId);
     }
 }

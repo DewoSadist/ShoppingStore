@@ -3,6 +3,7 @@ package ca.deos.store.entity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.sql.Time;
 import java.util.List;
@@ -15,8 +16,11 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.AUTO)
     int id;
 
-    @Column(name = "employee_id")
-    int employee_id;
+    @Column(name = "res_id")
+    int res_id;
+
+    @Column(name = "res_name")
+    String res_name;
 
     @Column(name = "order_day")
     @JsonFormat(pattern = "yyyy-mm-dd")
@@ -36,20 +40,31 @@ public class Order {
     String ship_via;
 
     @Column(name = "order_amount")
-    int order_amount;
+    BigDecimal order_amount;
 
-    @Column(name = "customer_id")
-    int customer_id;
-
-    @Column(name = "order_products")
-    String order_products;
-
-    @Column(name="user_id")
+    @Column(name = "user_id")
     String user_id;
 
-    public String getUser_id() {
-        return user_id;
-    }
+    @Column(name = "status")
+    String status;
+
+    @Column(name = "reorder")
+    int reorder;
+
+    @Column(name = "quantity")
+    int quantity;
+
+    @Column(name = "tax")
+    BigDecimal tax;
+
+    @Column(name = "delivery")
+    BigDecimal delivery;
+
+    @Column(name = "service_fee")
+    BigDecimal service_fee;
+
+    @Column(name = "small_order_fee")
+    BigDecimal small_order_fee;
 
 //    @OneToMany(cascade = { CascadeType.ALL }, orphanRemoval = true, mappedBy = "orders", fetch = FetchType.LAZY)
 //    private List<OrderDetails> orderDetails;
@@ -62,24 +77,13 @@ public class Order {
 //        this.orderDetails = orderDetails;
 //    }
 
-    public void setUser_id(String user_id) {
-        this.user_id = user_id;
+
+    public int getRes_id() {
+        return res_id;
     }
 
-    public String getOrder_products() {
-        return order_products;
-    }
-
-    public void setOrder_products(String order_products) {
-        this.order_products = order_products;
-    }
-
-    public int getCustomer_id() {
-        return customer_id;
-    }
-
-    public void setCustomer_id(int customer_id) {
-        this.customer_id = customer_id;
+    public void setRes_id(int res_id) {
+        this.res_id = res_id;
     }
 
     public int getId() {
@@ -88,14 +92,6 @@ public class Order {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getEmployee_id() {
-        return employee_id;
-    }
-
-    public void setEmployee_id(int employee_id) {
-        this.employee_id = employee_id;
     }
 
     public Date getOrder_day() {
@@ -138,11 +134,96 @@ public class Order {
         this.ship_via = ship_via;
     }
 
-    public int getOrder_amount() {
-        return order_amount;
+    public String getUser_id() {
+        return user_id;
     }
 
-    public void setOrder_amount(int order_amount) {
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public int getReorder() {
+        return reorder;
+    }
+
+    public void setReorder(int reorder) {
+        this.reorder = reorder;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getRes_name() {
+        return res_name;
+    }
+
+    public void setRes_name(String res_name) {
+        this.res_name = res_name;
+    }
+
+    public void setOrder_amount(BigDecimal order_amount) {
         this.order_amount = order_amount;
+    }
+
+    public BigDecimal getTax() {
+        return tax;
+    }
+
+    public void setTax(BigDecimal tax) {
+        this.tax = tax;
+    }
+
+    public BigDecimal getDelivery() {
+        return delivery;
+    }
+
+    public void setDelivery(BigDecimal delivery) {
+        this.delivery = delivery;
+    }
+
+    public BigDecimal getService_fee() {
+        return service_fee;
+    }
+
+    public void setService_fee(BigDecimal service_fee) {
+        this.service_fee = service_fee;
+    }
+
+    public BigDecimal getSmall_order_fee() {
+        return small_order_fee;
+    }
+
+    public void setSmall_order_fee(BigDecimal small_order_fee) {
+        this.small_order_fee = small_order_fee;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", order_day=" + order_day +
+                ", order_time=" + order_time +
+                ", req_day=" + req_day +
+                ", req_time=" + req_time +
+                ", ship_via='" + ship_via + '\'' +
+                ", order_amount=" + order_amount +
+                ", user_id='" + user_id + '\'' +
+                ", status='" + status + '\'' +
+                ", reorder=" + reorder +
+                ", quantity='" + quantity + '\'' +
+                '}';
     }
 }

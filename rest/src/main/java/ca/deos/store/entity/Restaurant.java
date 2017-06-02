@@ -2,6 +2,7 @@ package ca.deos.store.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
@@ -71,6 +72,18 @@ public class Restaurant implements Serializable{
 
     @Column(name = "user_id")
     private String user_id;
+
+    @Column(name = "tax")
+    private BigDecimal tax;
+
+    @Column (name = "delivery")
+    private BigDecimal delivery;
+
+    @Column (name = "service_fee")
+    private BigDecimal service_fee;
+
+    @Column(name = "small_order_fee")
+    private BigDecimal small_order_fee;
 
 //    @OneToMany(mappedBy = "restaurant", fetch = FetchType.LAZY)
 //    private List<Category> categories;
@@ -271,5 +284,37 @@ public class Restaurant implements Serializable{
 
     public void setUser_id(String user_id) {
         this.user_id = user_id;
+    }
+
+    public BigDecimal getTax() {
+        return tax;
+    }
+
+    public void setTax(BigDecimal tax) {
+        this.tax = tax;
+    }
+
+    public BigDecimal getDelivery() {
+        return delivery;
+    }
+
+    public void setDelivery(BigDecimal delivery) {
+        this.delivery = delivery;
+    }
+
+    public BigDecimal getService_fee() {
+        return service_fee;
+    }
+
+    public void setService_fee(BigDecimal service_fee) {
+        this.service_fee = service_fee;
+    }
+
+    public BigDecimal getSmall_order_fee() {
+        return small_order_fee;
+    }
+
+    public void setSmall_order_fee(BigDecimal small_order_fee) {
+        this.small_order_fee = small_order_fee;
     }
 }

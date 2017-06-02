@@ -9,9 +9,11 @@ public interface OrderDao {
 
     List<Order> getOrders();
 
-    Order getOrder(int orderId);
+    List<Order> gesRestaurantOrders(int resId);
 
     List<Order> getUserOrders(String userId);
+
+    Order getOrder(int orderId);
 
     void saveOrUpdateOrder(Order order);
 
