@@ -66,6 +66,23 @@ public class Order {
     @Column(name = "small_order_fee")
     BigDecimal small_order_fee;
 
+    @Column(name = "client_name")
+    String client_name;
+
+    @Column(name = "client_address")
+    String client_address;
+
+    @Column(name = "client_number")
+    String client_number;
+
+    @Column(name = "client_email")
+    String client_email;
+
+    @Column(name = "payment")
+    String payment;
+
+
+
 //    @OneToMany(cascade = { CascadeType.ALL }, orphanRemoval = true, mappedBy = "orders", fetch = FetchType.LAZY)
 //    private List<OrderDetails> orderDetails;
 //
@@ -186,6 +203,10 @@ public class Order {
         this.tax = tax;
     }
 
+    public BigDecimal getOrder_amount() {
+        return order_amount;
+    }
+
     public BigDecimal getDelivery() {
         return delivery;
     }
@@ -210,10 +231,44 @@ public class Order {
         this.small_order_fee = small_order_fee;
     }
 
+    public String getClient_name() {
+        return client_name;
+    }
+
+    public void setClient_name(String client_name) {
+        this.client_name = client_name;
+    }
+
+    public String getClient_address() {
+        return client_address;
+    }
+
+    public void setClient_address(String client_address) {
+        this.client_address = client_address;
+    }
+
+    public String getClient_number() {
+        return client_number;
+    }
+
+    public void setClient_number(String client_number) {
+        this.client_number = client_number;
+    }
+
+    public String getClient_email() {
+        return client_email;
+    }
+
+    public void setClient_email(String client_email) {
+        this.client_email = client_email;
+    }
+
     @Override
     public String toString() {
         return "Order{" +
                 "id=" + id +
+                ", res_id=" + res_id +
+                ", res_name='" + res_name + '\'' +
                 ", order_day=" + order_day +
                 ", order_time=" + order_time +
                 ", req_day=" + req_day +
@@ -223,7 +278,25 @@ public class Order {
                 ", user_id='" + user_id + '\'' +
                 ", status='" + status + '\'' +
                 ", reorder=" + reorder +
-                ", quantity='" + quantity + '\'' +
+                ", quantity=" + quantity +
+                ", tax=" + tax +
+                ", delivery=" + delivery +
+                ", service_fee=" + service_fee +
+                ", small_order_fee=" + small_order_fee +
+                ", client_name='" + client_name + '\'' +
+                ", client_address='" + client_address + '\'' +
+                ", client_number='" + client_number + '\'' +
+                ", client_email='" + client_email + '\'' +
+                ", payment='" + payment + '\'' +
                 '}';
     }
+
+    public String getPayment() {
+        return payment;
+    }
+
+    public void setPayment(String payment) {
+        this.payment = payment;
+    }
+
 }

@@ -38,7 +38,7 @@ public class CategoryController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/restaurants/categories", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/restaurants/categories", method = RequestMethod.POST)
     public Category saveCategory(@RequestBody Category category) throws IOException, UnirestException {
 
         return categoryService.saveOrUpdateCategory(category);
