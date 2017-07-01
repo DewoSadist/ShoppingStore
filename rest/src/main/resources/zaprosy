@@ -66,30 +66,40 @@ CREATE TABLE order_details
 (
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     title VARCHAR(40),
-    unit_price DOUBLE,
+    unit_price DECIMAL(15,2),
     quantity INT,
-    description LONGTEXT,
+    note LONGTEXT,
     prod_id INT,
-    order_id INT NOT NULL,
-    FOREIGN KEY (order_id) REFERENCES orders (order_id)
+    order_order_id INT,
+    additional VARCHAR(100),
+    FOREIGN KEY (order_order_id) REFERENCES orders (order_id)
 );
-CREATE INDEX ord_det ON order_details (order_id);
+CREATE INDEX FK_bpubtrqdihnijm2wcjvvt7a7p ON order_details (order_order_id);
 CREATE TABLE orders
 (
     order_id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    employee_id INT,
     order_day DATE,
     order_time TIME,
     req_time TIME,
     req_day DATE,
     ship_via VARCHAR(20),
-    order_amount VARCHAR(10) NOT NULL,
-    customer_id INT NOT NULL,
-    order_products LONGTEXT NOT NULL,
+    order_amount DECIMAL(15,2),
     user_id VARCHAR(30) NOT NULL,
-    FOREIGN KEY (customer_id) REFERENCES customer (customer_id)
+    status VARCHAR(10) NOT NULL,
+    reorder INT NOT NULL,
+    quantity INT NOT NULL,
+    res_id INT,
+    res_name VARCHAR(100) NOT NULL,
+    tax DECIMAL(15,2) NOT NULL,
+    delivery DECIMAL(15,2) NOT NULL,
+    service_fee DECIMAL(15,2) NOT NULL,
+    small_order_fee DECIMAL(15,2) NOT NULL,
+    client_name VARCHAR(100),
+    client_number VARCHAR(20) NOT NULL,
+    client_email VARCHAR(50),
+    client_address VARCHAR(50) NOT NULL,
+    payment VARCHAR(30) NOT NULL
 );
-CREATE INDEX o ON orders (customer_id);
 CREATE TABLE persons
 (
     ID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -156,7 +166,11 @@ CREATE TABLE restaurant
     postal_code VARCHAR(10),
     open_id INT,
     ratings INT,
-    user_id VARCHAR(100)
+    user_id VARCHAR(100),
+    tax DECIMAL(15,2) NOT NULL,
+    service_fee DECIMAL(15,2) NOT NULL,
+    small_order_fee DECIMAL(15,2) NOT NULL,
+    delivery DECIMAL(15,2) NOT NULL
 );
 CREATE TABLE users
 (

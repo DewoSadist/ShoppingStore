@@ -31,14 +31,14 @@ public class ProductOptionsController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/options/{optId}", method = RequestMethod.POST)
+    @RequestMapping(value = "/options/{optId}", method = RequestMethod.GET)
     public ProductOptions getProductOptions(@PathVariable int optId) throws IOException, UnirestException {
 
         return productOptionsService.getProductOptionsById(optId);
     }
 
     @ResponseBody
-    @RequestMapping(value = "products/{prodId}/options", method = RequestMethod.POST)
+    @RequestMapping(value = "products/{prodId}/options", method = RequestMethod.GET)
     public List<ProductOptions> getProductOptionsList(@PathVariable int prodId) throws IOException, UnirestException {
 
         return productOptionsService.getProductOptionsListById(prodId);
@@ -46,9 +46,9 @@ public class ProductOptionsController {
 
     @ResponseBody
     @RequestMapping(value = "/options", method = RequestMethod.POST)
-    public ProductOptions saveProductOptions(@RequestBody ProductOptions productOptions) throws IOException, UnirestException {
+    public List<ProductOptions> saveProductOptions(@RequestBody List<ProductOptions> productOptionsList) throws IOException, UnirestException {
 
-        return productOptionsService.saveOrUpdateProductOptions(productOptions);
+        return productOptionsService.saveOrUpdateProductOptions(productOptionsList);
     }
 
     @ResponseBody

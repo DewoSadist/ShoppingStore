@@ -23,7 +23,7 @@ public class RestaurantDaoImpl implements RestaurantDao {
     EntityManager em;
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public List<Restaurant> getRestaurants() {
         Session session = em.unwrap(Session.class);
 
@@ -31,7 +31,7 @@ public class RestaurantDaoImpl implements RestaurantDao {
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public Restaurant getRestaurantById(int resId){
         Session session = em.unwrap(Session.class);
 

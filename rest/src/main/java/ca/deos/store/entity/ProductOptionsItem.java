@@ -17,7 +17,7 @@ public class ProductOptionsItem {
     double price;
 
     @ManyToOne
-    @JoinColumn(name = "opt_id")
+//    @JoinColumn(name = "opt_id")
     ProductOptions productOptions;
 
     public int getId() {
@@ -44,6 +44,9 @@ public class ProductOptionsItem {
         this.price = price;
     }
 
+    public void setProductOptions(ProductOptions productOptions) {
+        this.productOptions = productOptions;
+    }
 
     @Override
     public String toString() {

@@ -31,9 +31,9 @@ public class ProductOptionsServiceImpl implements ProductOptionsService {
     }
 
     @Override
-    public ProductOptions saveOrUpdateProductOptions(ProductOptions productOptions) throws UnirestException {
-        productOptionsDao.saveOrUpdateProductOptions(productOptions);
-        return productOptions;
+    public List<ProductOptions> saveOrUpdateProductOptions(List<ProductOptions> productOptionsList) throws UnirestException {
+        productOptionsDao.saveOrUpdateProductOptions(productOptionsList);
+        return productOptionsList;
     }
 
     @Override

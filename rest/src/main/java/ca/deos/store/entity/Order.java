@@ -83,16 +83,17 @@ public class Order {
 
 
 
-//    @OneToMany(cascade = { CascadeType.ALL }, orphanRemoval = true, mappedBy = "orders", fetch = FetchType.LAZY)
-//    private List<OrderDetails> orderDetails;
-//
-//    public List<OrderDetails> getOrderDetails() {
-//        return orderDetails;
-//    }
-//
-//    public void setOrderDetails(List<OrderDetails> orderDetails) {
-//        this.orderDetails = orderDetails;
-//    }
+    @OneToMany(cascade =  CascadeType.ALL )
+    @JoinColumn(name = "order_order_id")
+    private List<OrderDetails> orderDetails;
+
+    public List<OrderDetails> getOrderDetails() {
+        return orderDetails;
+    }
+
+    public void setOrderDetails(List<OrderDetails> orderDetails) {
+        this.orderDetails = orderDetails;
+    }
 
 
     public int getRes_id() {

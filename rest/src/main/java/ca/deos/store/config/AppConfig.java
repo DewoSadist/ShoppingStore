@@ -13,14 +13,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
+//import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import util.MyLogger;
 
 import javax.annotation.PostConstruct;
 import java.text.SimpleDateFormat;
 
 @Configuration
-@EnableSwagger2
+//@EnableSwagger2
 public class AppConfig {
 
 

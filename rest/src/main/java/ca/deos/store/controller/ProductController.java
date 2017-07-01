@@ -30,7 +30,7 @@ public class ProductController {
         return productService.getProducts();
     }
     @ResponseBody
-    @RequestMapping(value = "/products/{prodId}", method = RequestMethod.POST)
+    @RequestMapping(value = "/products/{prodId}", method = RequestMethod.GET)
     public  Product getProduct(@PathVariable int prodId) throws IOException, UnirestException {
 
         return productService.getProductById(prodId);

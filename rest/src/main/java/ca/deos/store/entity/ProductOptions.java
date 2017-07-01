@@ -26,7 +26,8 @@ public class ProductOptions {
     @Column(name = "prod_id")
     int prod_id;
 
-    @OneToMany(mappedBy = "productOptions", fetch = FetchType.LAZY)
+    @OneToMany(cascade =  CascadeType.ALL )
+    @JoinColumn(name = "productOptions_opt_id")
     private List<ProductOptionsItem> productOptionsItems;
 
     public List<ProductOptionsItem> getProductOptionsItems() {

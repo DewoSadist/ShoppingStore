@@ -1,21 +1,11 @@
 spring:
-  profiles.active: dev
+  profiles.active: production
 
 ---
 spring:
   profiles: dev
 
 server.port: 8080
-
-rest.server.url: localhost:8080
-
-email.service.url: http://localhost:8083/api/v1
-
-api.server.url : https://testapi.homebank.kz
-api.server.url.rest : /hb/api/v1
-api.server.url.oauth : /auth/connect/token
-api.client.id : hb3
-api.client.secret : 21B5F798-BE55-42BC-8AA8-0025B903DC3B
 
 database.url : jdbc:mysql://localhost:3306/deos
 database.driverClassName : com.mysql.jdbc.Driver
@@ -37,8 +27,6 @@ spring.http.encoding:
     enabled: true # Enable http encoding support.
     force: true # Force the encoding to the configured charset on HTTP requests and responses.
 
-openapi.authorization: b3BlbmFwaTpKaDMzNGZyZmtkaWY=
-#openapi:Jh334frfkdif
 
 spring.jackson.date-format: yyyy-MM-dd'T'HH:mm:ss
 
@@ -75,4 +63,43 @@ github:
 logging:
   level:
 org.springframework.security: DEBUG
+
 ---
+spring:
+  profiles: production
+
+server.port: 8080
+
+database.url : jdbc:mysql://localhost:3306/munchrocket
+database.driverClassName : com.mysql.jdbc.Driver
+database.username : munchrocket
+database.password : MuNchRoCkeT2017
+
+# Specify the DBMS
+spring.jpa.database : MYSQL
+
+# Show or not log for each sql query
+spring.jpa.show-sql : true
+hibernate.dialect : org.hibernate.dialect.MySQL5Dialect
+hibernate.hbm2ddl : update
+spring.jpa.properties.hibernate.connection.characterEncoding: utf-8
+spring.jpa.properties.hibernate.connection.CharSet: utf-8
+
+spring.http.encoding:
+    charset: UTF-8 # Charset of HTTP requests and responses. Added to the "Content-Type" header if not set explicitly.
+    enabled: true # Enable http encoding support.
+    force: true # Force the encoding to the configured charset on HTTP requests and responses.
+
+spring.jackson.date-format: yyyy-MM-dd'T'HH:mm:ss
+
+security:
+  oauth2:
+    client:
+      client-id: deos
+      client-secret: deossecret
+      scope: read,write
+      auto-approve-scopes: '.*'
+
+logging:
+  level:
+org.springframework.security: DEBUG

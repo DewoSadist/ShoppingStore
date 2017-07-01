@@ -12,7 +12,7 @@ public interface ProductOptionsDao {
 
     public List<ProductOptions> getProductOptionsListById(int prodId);
 
-    public void saveOrUpdateProductOptions(ProductOptions productOptions);
+    public void saveOrUpdateProductOptions(List<ProductOptions> productOptionsList);
 
     public void deleteProductOptions(int optId);
 }

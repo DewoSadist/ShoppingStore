@@ -1,6 +1,7 @@
 package ca.deos.store.entity;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name="order_details")
@@ -15,23 +16,26 @@ public class OrderDetails {
     int employee_id;
 
     @Column(name = "unit_price")
-    int unit_price;
+    BigDecimal unit_price;
 
     @Column(name = "quantity")
     int quantity;
 
-    @Column(name = "description")
-    String description;
+    @Column(name = "note")
+    String note;
+
+    @Column(name ="additional")
+    String additional;
 
     @Column(name = "title")
     String title;
 
 //    @Column(name = "order_id")
 //    String order_id;
-
-//    @ManyToOne
+//
+    @ManyToOne
 //    @JoinColumn(name = "order_id")
-//    Order order;
+    Order order;
 
     public int getId() {
         return id;
@@ -49,11 +53,11 @@ public class OrderDetails {
         this.employee_id = employee_id;
     }
 
-    public int getUnit_price() {
+    public BigDecimal getUnit_price() {
         return unit_price;
     }
 
-    public void setUnit_price(int unit_price) {
+    public void setUnit_price(BigDecimal unit_price) {
         this.unit_price = unit_price;
     }
 
@@ -65,12 +69,12 @@ public class OrderDetails {
         this.quantity = quantity;
     }
 
-    public String getDescription() {
-        return description;
+    public String getNote() {
+        return note;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setNote (String note) {
+        this.note = note;
     }
 
     public String getTitle() {
@@ -81,11 +85,15 @@ public class OrderDetails {
         this.title = title;
     }
 
-//    public String getOrder_id() {
-//        return order_id;
-//    }
-//
-//    public void setOrder_id(String order_id) {
-//        this.order_id = order_id;
-//    }
+    public String getAdditional() {
+        return additional;
+    }
+
+    public void setAdditional(String additional) {
+        this.additional = additional;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
 }

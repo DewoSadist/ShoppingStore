@@ -2,6 +2,7 @@ package ca.deos.store.dao.impl;
 
 import ca.deos.store.dao.OrderDao;
 import ca.deos.store.entity.Order;
+import ca.deos.store.entity.OrderDetails;
 import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;
 import org.hibernate.Session;
@@ -21,12 +22,11 @@ public class OrderDaoImpl implements OrderDao {
 
     private Log log = LogFactory.getLog(RestaurantDaoImpl.class);
 
-
     @Autowired
     EntityManager em;
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public List<Order> getOrders() {
         Session session = em.unwrap(Session.class);
 
@@ -43,6 +43,39 @@ public class OrderDaoImpl implements OrderDao {
                 .list();
     }
 
+    @Override
+    @Transactional
+    public void saveOrUpdateOrder(Order order){
+        Session session = em.unwrap(Session.class);
+        if(order.getId() > 0){
+            log.info("Updating existing order");
+            List<OrderDetails> orderDetailses = order.getOrderDetails();
+            order.setOrderDetails(null);
+            session.update(order);
+            for(OrderDetails od: orderDetailses){
+                od.setOrder(order);
+                System.out.println(od.toString());
+                session.saveOrUpdate(od);
+            }
+            order.setOrderDetails(orderDetailses);
+        } else {
+            try {
+                log.info("Inserting new order");
+                List<OrderDetails> orderDetailses = order.getOrderDetails();
+                order.setOrderDetails(null);
+                session.save(order);
+                for(OrderDetails od: orderDetailses){
+                    od.setOrder(order);
+                    System.out.println(od.toString());
+                    session.save(od);
+                }
+                order.setOrderDetails(orderDetailses);
+            } catch (Exception e){
+
+            }
+        }
+        log.info("Order saved with id: " + order.getId());
+    }
     @Override
     @Transactional(readOnly = true)
     public Order getOrder(int orderId){
@@ -62,20 +95,7 @@ public class OrderDaoImpl implements OrderDao {
 
     }
 
-    @Override
-    @Transactional
-    public void saveOrUpdateOrder(Order order){
-        Session session = em.unwrap(Session.class);
 
-        if(order.getId() > 0){
-            session.update(order);
-            log.info("Updating existing order");
-        } else {
-            session.save(order);
-            log.info("Updating existing order");
-        }
-        log.info("Order saved with id: " + order.getId());
-    }
 
     @Override
     @Transactional
@@ -86,5 +106,8 @@ public class OrderDaoImpl implements OrderDao {
         if(order != null) {
             session.delete(order);
         }
+        log.info("Order deleted with id: " + orderId);
     }
+
+
 }
