@@ -16,7 +16,7 @@ public interface OrderService {
 
     List<Order> getRestaurantOrders(int resId);
 
-    Order saveOrUpdateOrder(Order order) throws UnirestException;
+    Order saveOrUpdateOrder(Order order) throws UnirestException, IOException;
 
     void deleteOrder(int orderId);
 

@@ -1,22 +1,30 @@
 package ca.deos.store.service.impl;
 
+import ca.deos.mail.EmailClient;
+import ca.deos.mail.service.ReceiptService;
 import ca.deos.store.dao.OrderDao;
+import ca.deos.store.domain.EmailObject;
 import ca.deos.store.entity.Order;
 import ca.deos.store.service.OrderService;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
 
-/**
- * Created by admin on 18.05.2017.
- */
+
 @Service
 public class OrderServiceImpl implements OrderService {
 
     @Autowired
     OrderDao orderDao;
+
+    @Autowired
+    EmailClient emailClient;
+
+    @Autowired
+    ReceiptService receiptService;
 
     @Override
     public List<Order> getOrders() {
@@ -40,8 +48,20 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order saveOrUpdateOrder(Order order) throws UnirestException {
+    public Order saveOrUpdateOrder(Order order) throws UnirestException, IOException {
+
         orderDao.saveOrUpdateOrder(order);
+
+        // send Email
+        String body = receiptService.getReceiptOrder(order);
+
+        EmailObject mail = new EmailObject();
+        mail.setDestinationAddress(order.getClient_email());
+        mail.setBody(body);
+        mail.setSubject("Order: "+ order.getId() + " from Munchrocket");
+
+        emailClient.sendEmail(mail);
+
         return order;
     }
 

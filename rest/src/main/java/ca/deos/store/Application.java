@@ -10,12 +10,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Import;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 //@EnableSwagger2
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 @SpringBootApplication
 @Import({AppConfig.class, JpaConfig.class, JDBCSecurityConfig.class})
+@CrossOrigin(origins = "*", allowedHeaders = {"*"})
 @ComponentScan({
         "ca.deos.store.controller",
         "ca.deos.store.service",
@@ -23,7 +25,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
         "ca.deos.store.dao",
         "ca.deos.store.config",
         "ca.deos.store.entity",
-        "ca.deos.store.exceptions"
+        "ca.deos.store.exceptions",
+        "ca.deos.mail"
 })
 public class Application {
 
