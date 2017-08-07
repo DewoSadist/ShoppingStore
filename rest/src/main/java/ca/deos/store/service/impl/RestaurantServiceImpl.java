@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.util.List;
 
+
 @Service
 public class RestaurantServiceImpl implements RestaurantService {
 
@@ -29,6 +30,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public Restaurant saveOrUpdateRestaurant(Restaurant restaurant) {
+
         restaurantDao.saveOrUpdateRestaurant(restaurant);
         return restaurant;
     }

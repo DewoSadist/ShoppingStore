@@ -1,2 +1,4 @@
 .idea/
 /.idea/
+/mail-service/target/
+/rest/target/

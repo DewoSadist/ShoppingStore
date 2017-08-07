@@ -40,6 +40,9 @@ public class Restaurant implements Serializable{
     @Column(name = "cover_image_url")
     private String cover_image_url;
 
+    @Transient
+    private String logo_image;
+
     @Column(name = "status")
     private String status;
 
@@ -316,5 +319,13 @@ public class Restaurant implements Serializable{
 
     public void setSmall_order_fee(BigDecimal small_order_fee) {
         this.small_order_fee = small_order_fee;
+    }
+
+    public String getLogo_image() {
+        return logo_image;
+    }
+
+    public void setLogo_image(String logo_image) {
+        this.logo_image = logo_image;
     }
 }

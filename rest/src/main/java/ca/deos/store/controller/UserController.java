@@ -53,5 +53,12 @@ public class UserController {
         return userService.getAllUsers();
     }
 
+    @RequestMapping(value ="/{userId}/address", method = RequestMethod.POST)
+    public void setAddress(@PathVariable String userId, @RequestBody User user1) throws IOException, UnirestException {
+        User user = userService.getUser(userId);
+        user.setAddress(user1.getAddress());
+        userService.saveOrUpdateUser(user);
+    }
+
 
 }
